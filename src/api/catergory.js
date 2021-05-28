@@ -1,43 +1,57 @@
-import request from "@/utils/request"
+import request from '@/utils/request'
 
 export default {
-    // 分页查询列表
+
+    // 分页条件查询分类列表 
     getList(query, current = 1, size = 20) {
-        return request({
-            url: `article/catergory/search`,
+        return request({ // Promise
+            url: `/article/catergory/search`,
             method: 'post',
-            data: {
+            data: { // {name: '前端', status: 1, current: current, size: size}
                 ...query,
                 current,
                 size
             }
         })
     },
-    // 新增分类
-    addCatergory(query) {
+
+    add(data) {
         return request({
-            url: "article/catergory/add",
-            method: "post",
-            data: {
-                ...query
-            }
+            url: `/article/categrory`,
+            method: 'post',
+            data: data
         })
     },
-    // 通过id获取分类信息\
-    getCatergoryById(id) {
+
+    // 查询类别详情
+    getById(id) {
         return request({
-            url: `article/catergory/${id}`,
-            method: "get",
+            url: `/article/catergory/${id}`,
+            method: 'get'
         })
     },
-    // 提交编辑后的分类信息
-    editCatergory(query) {
+
+    // 更新
+    update(data) {
         return request({
-            url: "article/catergory/edit",
-            method: "post",
-            data: {
-                ...query
-            }
+            url: `/article/catergory`,
+            method: 'put',
+            data
+        })
+    },
+
+    // 删除
+    deleteById(id) {
+        return request({
+            url: `/article/catergory/${id}`,
+            method: 'delete'
+        })
+    },
+    // 查询正常状态（非禁用）的所有分类列表
+    getAbleCatergory() {
+        return request({
+            url: '/article/catergory/',
+            method: 'get'
         })
     }
 }

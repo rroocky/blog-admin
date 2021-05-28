@@ -1,2 +1,6 @@
 1.bodyParser中间件那里，第八章  修改mock-server.js 49行 16行
 
+elementUI radio提交总是label的中文字符串，而不是value的值
+解决：radio组件标签中间直接写显示名称，value值的绑定用 :label属性绑定
+<el-radio :label="1">正常</el-radio>
+<el-radio :label="0">禁用</el-radio>
